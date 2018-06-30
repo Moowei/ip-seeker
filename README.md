@@ -1,18 +1,5 @@
 IPIP.net的datx格式IP数据库解析程序，包括对地市IP库和县区IP库的解析
 ==
-# 下载IP库的shell脚本地址:https://github.com/Moowei/ip-seeker/blob/master/src/shell/download_ip_file.sh
-
-## 脚本使用说明：
-###   ./download_ip_file.sh 1 #下载IP数据库(datx)
-###   ./download_ip_file.sh 2 #下载县区数据库(datx)
-###   ./download_ip_file.sh 3 #下载手机号归属地(txt)
-
-# 此外：
-## 下载IP库的Python版脚本地址:https://github.com/Moowei/ip-seeker/blob/master/src/shell/download_ip_file.py
-## 下载IP库的PHP版脚本地址:https://github.com/Moowei/ip-seeker/blob/master/src/shell/download_ip_file.php
-
-
-==
 # 一、UDF调用：
 ## 1、地市IP库解析的UDF
 #### 使用类 com.moowei.ipip17mon.udf.Ip2CityString
@@ -40,6 +27,7 @@ from (
 ```
 <br>
 -----------------------
+
 # 二、外部RPC调用，使用如下：
 * 1、启动服务（服务进程每隔10s检测数据文件/opt/blw_test/php/mydata4vipday2.datx是否变动，只有当文件变动时才会自动加载进内存并生成新的实例）
 ```shell
@@ -146,3 +134,19 @@ public void isIPStr() {
 >* byte[4]~byte[7]:存放当前记录的endIP值,大端模式;
 >* byte[8]~byte[11]:存放该记录对应的地域和运营商信息(存储在AreaData中以\t分隔的字节数组)的索引（AreaData中的下标），小端模式。
 >* byte[12]:当前记录中地域和运营商信息(存储在AreaData中以\t分隔的字节数组)所占字节byte长度。<br>
+
+<br>
+----------------------
+
+# 六下载数据库的脚本下载IP库的shell脚
+
+## 下载IP库的shell脚本地址:https://github.com/Moowei/ip-seeker/blob/master/src/shell/download_ip_file.sh
+
+## 脚本使用说明：
+###   ./download_ip_file.sh 1 #下载IP数据库(datx)
+###   ./download_ip_file.sh 2 #下载县区数据库(datx)
+###   ./download_ip_file.sh 3 #下载手机号归属地(txt)
+
+# 此外：
+## 下载IP库的Python版脚本地址:https://github.com/Moowei/ip-seeker/blob/master/src/shell/download_ip_file.py
+## 下载IP库的PHP版脚本地址:https://github.com/Moowei/ip-seeker/blob/master/src/shell/download_ip_file.php
