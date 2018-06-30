@@ -2,11 +2,11 @@ IPIP.net的datx格式IP数据库解析程序，包括对地市IP库和县区IP�
 ==
 # 一、UDF调用：
 ## 1、地市IP库解析的UDF
-#### 使用类 com.zjrb.ipip17mon.udf.Ip2CityString
+#### 使用类 com.moowei.ipip17mon.udf.Ip2CityString
 ```hql
-add file hdfs://ZBJT/user/learning_test/hive_db/udf_blw/mydata4vipday2.datx;
-add jar hdfs://ZBJT/user/learning_test/hive_db/udf_blw/original-ip-seeker-1.0-SNAPSHOT.jar;
-create temporary function ip2CityString as 'com.zjrb.ipip17mon.udf.Ip2CityString';
+add file hdfs://moowei/user/learning_test/hive_db/udf_blw/mydata4vipday2.datx;
+add jar hdfs://moowei/user/learning_test/hive_db/udf_blw/original-ip-seeker-1.0-SNAPSHOT.jar;
+create temporary function ip2CityString as 'com.moowei.ipip17mon.udf.Ip2CityString';
 select ip,arr[0] as country,arr[1] as province,arr[2] as city 
 from ( 
   select ip,split(ip2CityString(ip), '\t') as arr from learning_test.ip_test 
@@ -14,11 +14,11 @@ from (
 ) tmp
 ```
 ## 2、区县IP库解析的UDF
-### 使用类 com.zjrb.ipip17mon.udf.Ip2CountyString
+### 使用类 com.moowei.ipip17mon.udf.Ip2CountyString
 ```hql
-add file hdfs://ZBJT/user/learning_test/hive_db/udf_blw/quxian.datx;
-add jar hdfs://ZBJT/user/learning_test/hive_db/udf_blw/original-ip-seeker-1.0-SNAPSHOT.jar;
-create temporary function ip2CountyString as 'com.zjrb.ipip17mon.udf.Ip2CountyString';
+add file hdfs://moowei/user/learning_test/hive_db/udf_blw/quxian.datx;
+add jar hdfs://moowei/user/learning_test/hive_db/udf_blw/original-ip-seeker-1.0-SNAPSHOT.jar;
+create temporary function ip2CountyString as 'com.moowei.ipip17mon.udf.Ip2CountyString';
 select ip,arr[0] as country,arr[1] as province,arr[2] as city ,arr[3] as county
 from (
   select ip,split(ip2CountyString(ip), '\t') as arr from learning_test.ip_test
@@ -30,11 +30,11 @@ from (
 # 二、外部RPC调用，使用如下：
 * 1、启动服务（服务进程每隔10s检测数据文件/opt/blw_test/php/mydata4vipday2.datx是否变动，只有当文件变动时才会自动加载进内存并生成新的实例）
 ```shell
-java -cp ip-seeker-1.0-SNAPSHOT.jar com.zjrb.ipip17mon.thirdparty.RPCServer
+java -cp ip-seeker-1.0-SNAPSHOT.jar com.moowei.ipip17mon.thirdparty.RPCServer
 ```
 * 2、客户端调用：
 ```shell
-java -cp ip-seeker-1.0-SNAPSHOT.jar com.zjrb.ipip17mon.thirdparty.RPCClient 118.24.8.8
+java -cp ip-seeker-1.0-SNAPSHOT.jar com.moowei.ipip17mon.thirdparty.RPCClient 118.24.8.8
 ```
 <br>
 ----------------
@@ -94,9 +94,9 @@ public void isIPStr() {
 
 # 四、地市IP库的datx数据结构
 
-## 1、结构图如下（原图片地址为 http://10.100.62.91/jiacx/UDF/blob/udf-ip-feature/src/conf/ipip_datx.png ）
+## 1、结构图如下（原图片地址为 https://github.com/Moowei/ip-seeker/blob/master/src/conf/ipip_datx.png ）
 (注意要想是图片在github中显示需要将原图片地址中blob改为raw，或在原图片地址后面添加?raw=true)：
-![image](http://10.100.62.91/jiacx/UDF/raw/udf-ip-feature/src/conf/ipip_datx.png) 
+![image](https://github.com/Moowei/ip-seeker/raw/master/src/conf/ipip_datx.png) 
 
 ## 2、Index区说明：
 >其中index为四个字节，与AreaData区起始的下标有关，若四个字节表示的int值为 areaDataStartIndex 那么,相关的指标可以用如下公式计算：<br>
