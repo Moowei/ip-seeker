@@ -1,5 +1,18 @@
 IPIP.net的datx格式IP数据库解析程序，包括对地市IP库和县区IP库的解析
 ==
+# 下载IP库的shell脚本地址:https://github.com/Moowei/ip-seeker/blob/master/src/shell/download_ip_file.sh
+
+## 脚本使用说明：
+###   ./download_ip_file.sh 1 #下载IP数据库(datx)
+###   ./download_ip_file.sh 2 #下载县区数据库(datx)
+###   ./download_ip_file.sh 3 #下载手机号归属地(txt)
+
+# 此外：
+## 下载IP库的Python版脚本地址:https://github.com/Moowei/ip-seeker/blob/master/src/shell/download_ip_file.py
+## 下载IP库的PHP版脚本地址:https://github.com/Moowei/ip-seeker/blob/master/src/shell/download_ip_file.php
+
+
+==
 # 一、UDF调用：
 ## 1、地市IP库解析的UDF
 #### 使用类 com.moowei.ipip17mon.udf.Ip2CityString
