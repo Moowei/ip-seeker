@@ -139,7 +139,8 @@ public void isIPStr() {
 <br>
 ----------------------
 
-# 六、下载数据库的脚本下载IP库的shell脚
+# 六、下载数据库的脚本
+
 
 ## 下载IP库的shell脚本地址:https://github.com/Moowei/ip-seeker/blob/master/src/shell/download_ip_file.sh
 
